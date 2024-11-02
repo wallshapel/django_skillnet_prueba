@@ -1,0 +1,19 @@
+# Entorno virtual
+env/
+
+# Archivos de compilación de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de configuración de bases de datos
+*.sqlite3
+
+# Configuraciones de sistema
+.DS_Store
+.vscode/
+
+# Node modules
+node_modules/
+
+# Archivos de salida de Tailwind CSS
+static/css/tailwind_output.css

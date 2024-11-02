@@ -1,0 +1,53 @@
+<!-- personas/templates/personas/person_form.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register Person</title>
+        <link href="{% static 'css/tailwind_output.css' %}" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100 p-6">
+        <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow-md">
+            <h1 class="text-2xl font-bold mb-4">Register Person</h1>
+            <form method="post" class="mb-6">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+            </form>
+
+            <h2 class="text-xl font-bold mb-4">Registered Persons</h2>
+            <table class="min-w-full bg-white shadow-md rounded border border-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 border-b">ID</th>
+                        <th class="px-4 py-2 border-b">Name</th>
+                        <th class="px-4 py-2 border-b">Age</th>
+                        <th class="px-4 py-2 border-b">Gender</th>
+                        <th class="px-4 py-2 border-b">Email</th>
+                        <th class="px-4 py-2 border-b">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in persons %}
+                        <tr class="hover:bg-gray-100">
+                            <td class="px-4 py-2 border-b text-center">{{ person.id }}</td>
+                            <td class="px-4 py-2 border-b">{{ person.name }}</td>
+                            <td class="px-4 py-2 border-b">{{ person.age }}</td>
+                            <td class="px-4 py-2 border-b">{{ person.gender }}</td>
+                            <td class="px-4 py-2 border-b">{{ person.email }}</td>
+                            <td class="px-4 py-2 border-b">{{ person.notes }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" class="px-4 py-2 text-center">No registered persons found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
